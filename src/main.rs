@@ -35,6 +35,8 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
     let rendered = html! {
         (DOCTYPE)
 
+        title { "Days since last Typst editor"}
+
         style { (style_contents) }
 
         div id="top" {
