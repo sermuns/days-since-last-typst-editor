@@ -1,3 +1,24 @@
 :root {
-	background-color: #ff0;
+	background-color: hsl(187, 80%, 80%);
+	font-family: sans-serif;
+}
+
+body {
+	padding: 2rem;
+}
+
+h2,
+h3 {
+	text-align: center;
+}
+
+#timeline {
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: center;
+	gap: .5rem;
+}
+
+footer {
+	text-align: center;
 }
