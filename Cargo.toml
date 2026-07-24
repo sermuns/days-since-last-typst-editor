@@ -5,4 +5,9 @@ edition = "2024"
 
 [dependencies]
 maud = "0.27"
-toml = { version = "1", default-features = false, features = ["std", "parse"] }
+serde = { version = "1", features = ["derive"] }
+toml = {
+  version = "1",
+  default-features = false,
+  features = ["parse", "serde", "std"]
+}
