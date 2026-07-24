@@ -1,12 +1,11 @@
-use maud::{DOCTYPE, html};
+use maud::{DOCTYPE, PreEscaped, html};
 use std::{fs, io, path::Path};
 
 use crate::data::Release;
 
 pub fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> {
-    let days_since_last_release = 30;
-
     let style_contents = fs::read_to_string("style.css")?;
+    let script_contents = fs::read_to_string("script.js")?;
 
     let rendered = html! {
         style { (style_contents) }
@@ -14,8 +13,10 @@ pub fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<
         h3 {
             "It has been"
         }
-        h2 {
-            (days_since_last_release)
+        h2 id="days" data-last-release=(releases.first().unwrap().date) {
+            noscript {
+                "? (javascript is disabled)"
+            }
         }
         h3 {
             "days since the last release of a Typst editor"
@@ -29,6 +30,8 @@ pub fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<
                 span { " was released on " (date) }
             }
         }
+
+        script { (PreEscaped(script_contents)) }
     };
 
     let output_dir = output_dir.as_ref();
