@@ -1,16 +1,26 @@
 use std::{fs, io};
 
-use crate::data::Data;
+use crate::data::Release;
 
 mod data;
 mod site;
 
 fn main() -> io::Result<()> {
-    let data_bytes = fs::read("data.toml")?;
-    let Data { mut releases } = toml::from_slice(&data_bytes).unwrap();
-    releases.sort_by(|a, b| a.name.cmp(&b.name));
+    let mut releases = Vec::new();
 
-    dbg!(&releases);
+    let mut csv_reader = csv::Reader::from_path("data.csv")?;
+    for result in csv_reader.records() {
+        let record = result?;
+        let mut fields = record.into_iter();
+
+        releases.push(Release {
+            name: fields.next().unwrap().to_owned(),
+            url: fields.next().unwrap().to_owned(),
+            date: fields.next().unwrap().to_owned(),
+        });
+    }
+
+    releases.sort();
 
     site::render(&releases, "dist")
 }

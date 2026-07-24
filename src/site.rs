@@ -4,9 +4,24 @@ use std::{fs, io, path::Path};
 use crate::data::Release;
 
 pub fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> {
+    let days_since_last_release = 30;
     let rendered = html! {
-        @for release in releases {
-            b { (release.name) }
+        h3 {
+            "It has been"
+        }
+        h2 {
+            (days_since_last_release)
+        }
+        h3 {
+            "days since the last release of a Typst editor"
+        }
+        div id="timeline" {
+            @for Release {
+                name, url, date
+            } in releases {
+                a href=(url) { (name) }
+                span { " was released on " (date) }
+            }
         }
     };
 

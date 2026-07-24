@@ -1,12 +1,6 @@
-use serde::Deserialize;
-
-#[derive(Debug, Deserialize)]
-pub struct Data {
-    pub releases: Vec<Release>,
-}
-
-#[derive(Debug, Deserialize)]
+#[derive(PartialEq, PartialOrd, Ord, Eq)]
 pub struct Release {
-    pub name: String,
     pub date: String,
+    pub url: String,
+    pub name: String,
 }
