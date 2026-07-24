@@ -5,7 +5,12 @@ use crate::data::Release;
 
 pub fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> {
     let days_since_last_release = 30;
+
+    let style_contents = fs::read_to_string("style.css")?;
+
     let rendered = html! {
+        style { (style_contents) }
+
         h3 {
             "It has been"
         }
@@ -15,6 +20,7 @@ pub fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<
         h3 {
             "days since the last release of a Typst editor"
         }
+
         div id="timeline" {
             @for Release {
                 name, url, date
