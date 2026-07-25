@@ -51,7 +51,7 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
                 "? (javascript is disabled)"
             }
         }
-        h3 {
+        h3 id="sentenceEnd" {
             "days since the last release of a Typst editor"
         }
 
