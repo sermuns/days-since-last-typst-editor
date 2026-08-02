@@ -34,6 +34,7 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
 
         head {
             meta name="viewport" content="width=device-width, initial-scale=1";
+            link rel="icon" href="/favicon.png";
             title { "Days since last Typst editor" }
             style { (fs::read_to_string("style.css")?) }
         }
@@ -77,6 +78,8 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
 
     let output_file = output_dir.join("index.html");
     fs::write(&output_file, rendered.into_string())?;
+
+    fs::copy("favicon.png", output_dir.join("favicon.png"))?;
 
     println!("rendered to {}", output_file.display());
 
