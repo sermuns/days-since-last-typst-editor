@@ -20,7 +20,7 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@stable
 
-      - run: cargo run
+      - run: cargo run --locked
 
       - uses: actions/upload-pages-artifact@v5
         with:
