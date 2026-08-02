@@ -29,42 +29,45 @@ fn main() -> io::Result<()> {
 }
 
 fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> {
-    let style_contents = fs::read_to_string("style.css")?;
-    let script_contents = fs::read_to_string("script.js")?;
-
     let rendered = html! {
         (DOCTYPE)
 
-        title { "Days since last Typst editor"}
-
-        style { (style_contents) }
-
-        div id="top" {
-            a target="_blank" href=(env!("CARGO_PKG_REPOSITORY")) { "source code" }
+        head {
+            meta name="viewport" content="width=device-width, initial-scale=1";
+            title { "Days since last Typst editor" }
+            style { (fs::read_to_string("style.css")?) }
         }
 
-        h3 {
-            "It has been"
-        }
-        h2 id="days" data-last-release=(releases.first().unwrap().date) {
-            noscript {
-                "? (javascript is disabled)"
+        body {
+            div id="top" {
+                a target="_blank" href=(env!("CARGO_PKG_REPOSITORY")) { "source code" }
             }
-        }
-        h3 id="sentenceEnd" {
-            "days since the last release of a Typst editor"
-        }
 
-        div id="timeline" {
-            @for Release {
-                name, url, date
-            } in releases {
-                a href=(url) { (name) }
-                span { " released " (date) }
+            h3 {
+                "It has been"
             }
-        }
 
-        script { (PreEscaped(script_contents)) }
+            h2 id="days" data-last-release=(releases.first().unwrap().date) {
+                noscript {
+                    "? (javascript is disabled)"
+                }
+            }
+
+            h3 id="sentenceEnd" {
+                "days since the last release of a Typst editor"
+            }
+
+            div id="timeline" {
+                @for Release {
+                    name, url, date
+                } in releases {
+                    a href=(url) { (name) }
+                    span { " released " (date) }
+                }
+            }
+
+            script { (PreEscaped(fs::read_to_string("script.js")?)) }
+        }
     };
 
     let output_dir = output_dir.as_ref();
