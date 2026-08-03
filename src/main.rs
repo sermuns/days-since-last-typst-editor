@@ -4,8 +4,9 @@ use maud::{DOCTYPE, PreEscaped, html};
 
 struct Release {
     date: String,
-    url: String,
     name: String,
+    reddit_url: String,
+    source_code_url: String,
 }
 
 fn main() -> io::Result<()> {
@@ -17,9 +18,10 @@ fn main() -> io::Result<()> {
         let mut fields = record.into_iter();
 
         releases.push(Release {
-            name: fields.next().unwrap().to_owned(),
-            url: fields.next().unwrap().to_owned(),
             date: fields.next().unwrap().to_owned(),
+            name: fields.next().unwrap().to_owned(),
+            reddit_url: fields.next().unwrap().to_owned(),
+            source_code_url: fields.next().unwrap().to_owned(),
         });
     }
 
@@ -33,6 +35,7 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
         (DOCTYPE)
 
         head {
+            meta charset="utf-8";
             meta name="viewport" content="width=device-width, initial-scale=1";
             link rel="icon" href="/favicon.png";
             title { "Days since last Typst editor" }
@@ -40,8 +43,16 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
         }
 
         body {
-            div id="top" {
-                a target="_blank" href=(env!("CARGO_PKG_REPOSITORY")) { "source code" }
+            div style="display:flex;justify-content:space-between;" {
+                a target="_blank" href=(env!("CARGO_PKG_REPOSITORY")) {
+                    "source code for this website"
+                }
+                span {
+                    "created by "
+                    a target="_blank" href="https://github.com/sermuns" {
+                        r#"Samuel "sermuns" Åkesson"#
+                    }
+                }
             }
 
             h3 {
@@ -60,10 +71,26 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
 
             div id="timeline" {
                 @for Release {
-                    name, url, date
+                    date, name, reddit_url, source_code_url,
                 } in releases {
-                    a href=(url) { (name) }
-                    span { " released " (date) }
+                    i style="text-align:right" { (name) }
+
+                    span {
+                        " was released "
+                        (date)
+                    }
+
+                    @if !reddit_url.is_empty() {
+                        a href=(reddit_url) { "reddit" }
+                    } @else {
+                        div {}
+                    }
+
+                    @if !source_code_url.is_empty() {
+                        a href=(source_code_url) { "source" }
+                    } @else {
+                        div {}
+                    }
                 }
             }
 

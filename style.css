@@ -1,5 +1,5 @@
 :root {
-	background-color: hsl(187, 80%, 80%);
+	background-color: hsl(187, 80%, 75%);
 	font-family: sans-serif;
 }
 
@@ -20,9 +20,9 @@ h2 {
 #timeline {
 	margin-top: 1rem;
 	display: grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: repeat(4, auto);
 	justify-content: center;
-	gap: .5rem;
+	gap: .7rem 1rem;
 }
 
 footer {
