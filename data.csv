@@ -1,17 +1,17 @@
-name,url,date
-LumiType,https://www.reddit.com/r/typst/comments/1v58pzx/lumitype_a_typst_editor_for_macos_windows/,2026-07-24
-Dotei,https://www.reddit.com/r/typst/comments/1uw4gv3/introducing_dotei_a_language_independent/,2026-07-14
-Typesetter,https://www.reddit.com/r/typst/comments/1nwmjtz/typesetter_a_typst_editor_for_gnome_and_linux/,2025-10-03
-Typstify,https://www.reddit.com/r/typst/comments/1h4n9q2/typstify_a_desktop_app_for_typst/,2024-12-02
-TypstEdit,https://www.reddit.com/r/typst/comments/1phpj40/i_built_a_native_macos_editor_for_typst_with/,2025-12-08
-Collabst,https://www.reddit.com/r/typst/comments/1tjl560/introducing_collabst_a_selfhosted_collaborative/,2026-05-21
-Typwriter,https://www.reddit.com/r/typst/comments/1t1y2o1/self_promo_typwriter_typst_text_editor/,2026-05-02
-lumen-edit,https://www.reddit.com/r/typst/comments/1qyobbx/my_attempt_at_creating_a_web_editor_with_typst/,2026-02-07
-TypeTex,https://www.reddit.com/r/typst/comments/1qu24ci/built_a_realtime_collaborative_typst_editor_would/,2026-02-02
-Hilbert,https://www.reddit.com/r/typst/comments/1uqkgqj/hilbert_scientific_ide_for_typst/,2026-07-08
-typress,https://www.reddit.com/r/typst/comments/1ukna87/im_developing_a_new_typst_editor/,2026-07-01
-Edist,https://www.reddit.com/r/typst/comments/1uixxn8/edist_the_native_macos_typst_editor/,2026-06-29
-Typeset,https://www.reddit.com/r/typst/comments/1ud267k/typeset/,2026-06-23
-Typtic,https://www.reddit.com/r/typst/comments/1v8xfxg/i_built_a_native_typst_editor_for_android_ios,2026-07-28
-Katvan,https://github.com/IgKh/katvan,2024-01-22
-Typsastra (formerly Typstry),https://github.com/Sovichea/typsastra,2026-06-29
+date,name,reddit_url,source_code_url
+2026-07-24,LumiType,https://www.reddit.com/r/typst/comments/1v58pzx/lumitype_a_typst_editor_for_macos_windows/,
+2026-07-14,Dotei,https://www.reddit.com/r/typst/comments/1uw4gv3/introducing_dotei_a_language_independent/,
+2025-10-03,Typesetter,https://www.reddit.com/r/typst/comments/1nwmjtz/typesetter_a_typst_editor_for_gnome_and_linux/,
+2024-12-02,Typstify,https://www.reddit.com/r/typst/comments/1h4n9q2/typstify_a_desktop_app_for_typst/,
+2025-12-08,TypstEdit,https://www.reddit.com/r/typst/comments/1phpj40/i_built_a_native_macos_editor_for_typst_with/,
+2026-05-21,Collabst,https://www.reddit.com/r/typst/comments/1tjl560/introducing_collabst_a_selfhosted_collaborative/,
+2026-05-02,Typwriter,https://www.reddit.com/r/typst/comments/1t1y2o1/self_promo_typwriter_typst_text_editor/,
+2026-02-07,lumen-edit,https://www.reddit.com/r/typst/comments/1qyobbx/my_attempt_at_creating_a_web_editor_with_typst/,
+2026-02-02,TypeTex,https://www.reddit.com/r/typst/comments/1qu24ci/built_a_realtime_collaborative_typst_editor_would/,
+2026-07-08,Hilbert,https://www.reddit.com/r/typst/comments/1uqkgqj/hilbert_scientific_ide_for_typst/,
+2026-07-01,typress,https://www.reddit.com/r/typst/comments/1ukna87/im_developing_a_new_typst_editor/,
+2026-06-29,Edist,https://www.reddit.com/r/typst/comments/1uixxn8/edist_the_native_macos_typst_editor/,
+2026-06-23,Typeset,https://www.reddit.com/r/typst/comments/1ud267k/typeset/,
+2026-07-28,Typtic,https://www.reddit.com/r/typst/comments/1v8xfxg/i_built_a_native_typst_editor_for_android_ios,
+2024-01-22,Katvan,,https://github.com/IgKh/katvan
+2026-06-29,Typsastra (formerly Typstry),,https://github.com/Sovichea/typsastra
