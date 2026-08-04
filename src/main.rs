@@ -47,7 +47,7 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
                 a target="_blank" href=(env!("CARGO_PKG_REPOSITORY")) {
                     "source code for this website"
                 }
-                span {
+                span style="text-align:right" {
                     "created by "
                     a target="_blank" href="https://github.com/sermuns" {
                         r#"Samuel "sermuns" Åkesson"#
