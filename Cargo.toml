@@ -5,6 +5,6 @@ edition = "2024"
 repository = "https://github.com/sermuns/days-since-last-typst-editor"
 
 [dependencies]
-csv = "1"
 maud = "0.27"
+ron = "0.12"
 serde = { version = "1", features = ["derive"] }

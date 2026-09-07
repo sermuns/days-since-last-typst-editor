@@ -1,30 +1,23 @@
-use std::{fs, io, path::Path};
+use std::{
+    fs::{self, File},
+    io,
+    path::Path,
+};
 
 use maud::{DOCTYPE, PreEscaped, html};
+use serde::Deserialize;
 
+#[derive(Deserialize)]
 struct Release {
     date: String,
     name: String,
-    reddit_url: String,
-    source_code_url: String,
+    source_code_url: Option<String>,
+    reddit_url: Option<String>,
 }
 
 fn main() -> io::Result<()> {
-    let mut releases = Vec::new();
-
-    let mut csv_reader = csv::Reader::from_path("data.csv")?;
-    for result in csv_reader.records() {
-        let record = result?;
-        let mut fields = record.into_iter();
-
-        releases.push(Release {
-            date: fields.next().unwrap().to_owned(),
-            name: fields.next().unwrap().to_owned(),
-            reddit_url: fields.next().unwrap().to_owned(),
-            source_code_url: fields.next().unwrap().to_owned(),
-        });
-    }
-
+    let file = File::open("data.ron")?;
+    let mut releases: Vec<Release> = ron::de::from_reader(file).unwrap();
     releases.sort_by(|a, b| b.date.cmp(&a.date));
 
     render(&releases, "dist")
@@ -80,13 +73,13 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
                         (date)
                     }
 
-                    @if !reddit_url.is_empty() {
+                    @if let Some(reddit_url) = reddit_url {
                         a href=(reddit_url) { "reddit" }
                     } @else {
                         div {}
                     }
 
-                    @if !source_code_url.is_empty() {
+                    @if let Some(source_code_url) = source_code_url {
                         a href=(source_code_url) { "source" }
                     } @else {
                         div {}
