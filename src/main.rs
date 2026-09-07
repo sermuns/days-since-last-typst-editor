@@ -1,30 +1,23 @@
 use std::{fs, io, path::Path};
 
 use maud::{DOCTYPE, PreEscaped, html};
+use serde::{Deserialize, Serialize};
 
+#[derive(Deserialize)]
 struct Release {
     date: String,
     name: String,
-    reddit_url: String,
     source_code_url: String,
+    reddit_url: String,
 }
 
 fn main() -> io::Result<()> {
-    let mut releases = Vec::new();
-
     let mut csv_reader = csv::Reader::from_path("data.csv")?;
-    for result in csv_reader.records() {
-        let record = result?;
-        let mut fields = record.into_iter();
 
-        releases.push(Release {
-            date: fields.next().unwrap().to_owned(),
-            name: fields.next().unwrap().to_owned(),
-            reddit_url: fields.next().unwrap().to_owned(),
-            source_code_url: fields.next().unwrap().to_owned(),
-        });
-    }
-
+    let mut releases: Vec<Release> = csv_reader
+        .deserialize()
+        .map(|result| result.unwrap())
+        .collect();
     releases.sort_by(|a, b| b.date.cmp(&a.date));
 
     render(&releases, "dist")
