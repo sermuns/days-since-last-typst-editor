@@ -20,7 +20,7 @@ h2 {
 #timeline {
 	margin-top: 1rem;
 	display: grid;
-	grid-template-columns: repeat(4, auto);
+	grid-template-columns: repeat(5, auto);
 	justify-content: center;
 	gap: .7rem 1rem;
 }

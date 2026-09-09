@@ -1,7 +1,7 @@
 use std::{fs, io, path::Path};
 
 use maud::{DOCTYPE, PreEscaped, html};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
 #[derive(Deserialize)]
 struct Release {
@@ -9,6 +9,7 @@ struct Release {
     name: String,
     source_code_url: String,
     reddit_url: String,
+    typst_forum_url: String,
 }
 
 fn main() -> io::Result<()> {
@@ -64,7 +65,7 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
 
             div id="timeline" {
                 @for Release {
-                    date, name, reddit_url, source_code_url,
+                    date, name, reddit_url, source_code_url, typst_forum_url,
                 } in releases {
                     i style="text-align:right" { (name) }
 
@@ -81,6 +82,12 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
 
                     @if !source_code_url.is_empty() {
                         a href=(source_code_url) { "source" }
+                    } @else {
+                        div {}
+                    }
+
+                    @if !typst_forum_url.is_empty() {
+                        a href=(typst_forum_url) { "forum" }
                     } @else {
                         div {}
                     }
