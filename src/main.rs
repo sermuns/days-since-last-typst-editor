@@ -65,7 +65,7 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
 
             div id="timeline" {
                 @for Release {
-                    date, name, reddit_url, source_code_url, typst_forum_url,
+                    date, name, source_code_url, reddit_url, typst_forum_url,
                 } in releases {
                     i style="text-align:right" { (name) }
 
@@ -74,14 +74,14 @@ fn render(releases: &[Release], output_dir: impl AsRef<Path>) -> io::Result<()> 
                         (date)
                     }
 
-                    @if !reddit_url.is_empty() {
-                        a href=(reddit_url) { "reddit" }
+                    @if !source_code_url.is_empty() {
+                        a href=(source_code_url) { "source" }
                     } @else {
                         div {}
                     }
 
-                    @if !source_code_url.is_empty() {
-                        a href=(source_code_url) { "source" }
+                    @if !reddit_url.is_empty() {
+                        a href=(reddit_url) { "reddit" }
                     } @else {
                         div {}
                     }
