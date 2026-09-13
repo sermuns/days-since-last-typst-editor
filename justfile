@@ -1,8 +1,5 @@
-[parallel]
-watch-and-serve: watch serve
-
 watch:
-    watchexec -i dist -- cargo run
+    typst w main.typ --features html,bundle -f bundle .
 
-serve:
-    penguin serve dist
+build:
+    typst c main.typ --features html,bundle -f bundle .

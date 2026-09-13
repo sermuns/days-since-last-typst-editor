@@ -16,11 +16,9 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: Swatinem/rust-cache@v2
+      - uses: typst-community/setup-typst@v5
 
-      - uses: dtolnay/rust-toolchain@stable
-
-      - run: cargo run --locked
+      - run: typst compile main.typ . --format bundle --features bundle,html
 
       - uses: actions/upload-pages-artifact@v5
         with:
