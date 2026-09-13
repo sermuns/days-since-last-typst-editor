@@ -13,7 +13,7 @@
       html.div(style: "display:flex;justify-content:space-between;", {
         html.a(
           target: "_blank",
-          href: "https://codeberg.org/noClaps/days-since-last-typst-editor",
+          href: "https://github.com/sermuns/days-since-last-typst-editor",
         )[source code for this website]
         html.span(style: "text-align:right;", {
           "created by "
